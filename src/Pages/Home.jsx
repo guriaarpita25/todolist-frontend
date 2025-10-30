@@ -53,43 +53,50 @@ function Home() {
             alert("Something went wrong while deleting.");
         }
     };
+    const handlelogout = () => {
+        localStorage.removeItem("token");
+        navigate("/login");
+    }
+    return (
+        <>
+            <h1 className="text-4xl font-bold text-center mt-10 text-black-800">Welcome to home page</h1>
+            <div className="flex justify-center mt-8">
+                <button className="bg-blue-600 text-white px-2 py-2 rounded-lg hover:bg-blue-700 w-[20%]"
+                    onClick={() => navigate('/create-todo')}>Add New</button>
 
-return (
-    <>
-        <h1 className="text-4xl font-bold text-center mt-10 text-black-800">Welcome to home page</h1>
-        <div className="flex justify-center mt-8 ">
-            <button className="bg-blue-600 text-white px-2 py-2 rounded-lg hover:bg-blue-700 w-[20%]"
-                onClick={() => navigate('/create-todo')}>Add New</button>
-        </div>
-        <div className="flex justify-center mt-10">
-            {todos.length > 0 ?
-                <div className="flex flex-col gap-4 w-[80%] max-w-xl">
-                    {todos.map((element, index) => (
-                        <div key={element._id || index}
-                            style={{ padding: 20, backgroundColor: "skyblue" }}>
-                            <p>Title:{element?.title} </p>
-                            <p>Description:{element?.description} </p>
-                            <p>Status:{(new Date(element?.dueDate).toString())} </p>
-                            <button className=" text-black py-2 px-2 rounded-lg bg-orange-400 w-[20%]"
-                             onClick={() => {navigate(`/updateTodo/${element["_id"]}`);
-                            }}>Update</button>
-                            <button className=" text-black py-2 px-2 rounded-lg bg-red-600 w-[20%] ml-[20px]"
-                             onClick={() => handleDelete(element._id)}  >Delete</button>
-                             <button className=" text-black py-2 px-2 rounded-lg bg-blue-600 w-[20%] ml-[20px]"
-                            onClick={() => navigate(`/ItemDisplay/${element._id}`)}>check</button>
-                        </div>
+                <button className=" px-2 py-2 rounded-lg bg-blue-600 w-[20%] ml-[20px]"
+                    onClick={handlelogout}> logout</button>
+            </div>
+            <div className="flex justify-center mt-10">
+                {todos.length > 0 ?
+                    <div className="flex flex-col gap-4 w-[80%] max-w-xl">
+                        {todos.map((element, index) => (
+                            <div key={element._id || index}
+                                style={{ padding: 20, backgroundColor: "skyblue" }}>
+                                <p>Title:{element?.title} </p>
+                                <p>Description:{element?.description} </p>
+                                <p>Status:{(new Date(element?.dueDate).toString())} </p>
+                                <button className=" text-black py-2 px-2 rounded-lg bg-orange-400 w-[20%]"
+                                    onClick={() => {
+                                        navigate(`/updateTodo/${element["_id"]}`);
+                                    }}>Update</button>
+                                <button className=" text-black py-2 px-2 rounded-lg bg-red-600 w-[20%] ml-[20px]"
+                                    onClick={() => handleDelete(element._id)}  >Delete</button>
+                                <button className=" text-black py-2 px-2 rounded-lg bg-blue-600 w-[20%] ml-[20px]"
+                                    onClick={() => navigate(`/ItemDisplay/${element._id}`)}>check</button>
+                            </div>
 
-                    )
+                        )
 
-                    )}
+                        )}
 
-                </div>
+                    </div>
 
-                : <>No Data Found</>}
-        </div>
+                    : <>No Data Found</>}
+            </div>
 
-    </>
-)
+        </>
+    )
 }
 export default Home;
 
