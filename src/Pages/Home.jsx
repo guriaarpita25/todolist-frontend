@@ -55,7 +55,7 @@ function Home() {
     };
     const handlelogout = () => {
         localStorage.removeItem("token");
-        navigate("/login");
+        navigate("/");
     }
     return (
         <>

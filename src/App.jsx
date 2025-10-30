@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/create-todo" element={<CreateTodo />} />
         <Route path="/updateTodo/:id" element={<UpdateTodo />} />
